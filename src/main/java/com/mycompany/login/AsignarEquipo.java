@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import static com.mycompany.login.NewMain.usuarios;
 
-public class CreaciondeEquipo extends javax.swing.JFrame {
+public class AsignarEquipo extends javax.swing.JFrame {
 
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JMenu jMenu1;
@@ -12,32 +12,39 @@ public class CreaciondeEquipo extends javax.swing.JFrame {
     private JLabel nameLabel;
     private JTextField nameTextField;
     private JButton addButton;
+    private JComboBox jComboBox2;
 
-    public CreaciondeEquipo() {
+    public AsignarEquipo() {
         initComponents();
     }
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
         jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        nameLabel = new JLabel("Nombre del equipo:");
+        nameLabel = new JLabel("Nombre del estudiante:");
         nameTextField = new JTextField();
         addButton = new JButton("Agregar");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        for (int i = 0; i < usuarios.size(); i++) {
-            Usuario v = usuarios.get(i);
+        for (int i = 0; i < NewMain.usuarios.size(); i++) {
+            Usuario v = NewMain.usuarios.get(i);
 
             jComboBox1.addItem(v.getNombre());
         }
+
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
+
+        for (var equipo : CreacionUsuarios.listaEquiposGlobal) {
+            jComboBox2.addItem(equipo.getNombre());
+        }
 
         jMenu1.setText("Regresar");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,9 +71,8 @@ public class CreaciondeEquipo extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
-                                                .addComponent(nameLabel)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(addButton))
                                 .addContainerGap(200, Short.MAX_VALUE))
         );
@@ -77,8 +83,7 @@ public class CreaciondeEquipo extends javax.swing.JFrame {
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(nameLabel)
-                                        .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(addButton)
                                 .addContainerGap(105, Short.MAX_VALUE))
@@ -95,17 +100,18 @@ public class CreaciondeEquipo extends javax.swing.JFrame {
     }
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        String nombreEquipo = nameTextField.getText();
+        String selectedCaptain = (String) jComboBox2.getSelectedItem();
 
         String selectedName = (String) jComboBox1.getSelectedItem();
 
-        for (Usuario usuario : usuarios) {
-            if (usuario.getNombre().equals(selectedName)) {
-                Equipo equipo = new Equipo(selectedName, nombreEquipo);
+        for (var equipo : CreacionUsuarios.listaEquiposGlobal) {
+            if (equipo.getNombre().equals(selectedCaptain)) {
 
-                equipo.setArraylist(usuario);
-
-                CreacionUsuarios.listaEquiposGlobal.add(equipo);
+                for (Usuario usuario : usuarios) {
+                    if (usuario.getNombre().equals(selectedName)) {
+                        equipo.setArraylist(usuario);
+                    }
+                }
 
                 break;
             }

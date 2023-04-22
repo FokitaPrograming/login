@@ -5,13 +5,14 @@
 package com.mycompany.login;
 
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
 
 /**
  *
  * @author skywo
  */
 public class CreacionUsuarios extends javax.swing.JFrame {
-
+public  static ArrayList<Equipo> listaEquiposGlobal= new ArrayList<>();
     /**
      * Creates new form CreacionUsuarios
      */
@@ -67,6 +68,8 @@ public class CreacionUsuarios extends javax.swing.JFrame {
         jMenu11 = new javax.swing.JMenu();
         jMenu12 = new javax.swing.JMenu();
         jMenu13 = new javax.swing.JMenu();
+        jMenu14 = new javax.swing.JMenu();
+        jMenu15 = new javax.swing.JMenu();
 
         jMenu1.setText("File");
         jMenuBar2.add(jMenu1);
@@ -197,8 +200,29 @@ public class CreacionUsuarios extends javax.swing.JFrame {
         });
         jMenu11.add(jMenu12);
 
-        jMenu13.setText("jMenu13");
-        jMenu11.add(jMenu13);
+        jMenu13.setText("Asignar miembros a un equipo");
+        jMenuBar1.add(jMenu13);
+        jMenu13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu13MouseClicked(evt);
+            }
+        });
+
+        jMenu14.setText("Consultar equipos");
+        jMenuBar1.add(jMenu14);
+        jMenu14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu14MouseClicked(evt);
+            }
+        });
+
+        jMenu15.setText("Consultar miembros equipos");
+        jMenuBar1.add(jMenu15);
+        jMenu15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu15MouseClicked(evt);
+            }
+        });
 
         jMenuBar1.add(jMenu11);
 
@@ -361,6 +385,21 @@ EliminacionUsuario eliminar =  new EliminacionUsuario ();
 eliminar.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenu13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        AsignarEquipo asignarEquipo =  new AsignarEquipo ();
+        asignarEquipo.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenu14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        ConsultarEquipo consultarEquipo =  new ConsultarEquipo ();
+        consultarEquipo.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenu15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        ConsultarEquipoMiembros consultarEquipoMiembros =  new ConsultarEquipoMiembros ();
+        consultarEquipoMiembros.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
    ModificacionUsuario modificar =  new ModificacionUsuario ();
 modificar.setVisible(true);      // TODO add your handling code here:
@@ -408,6 +447,8 @@ crearequipo.setVisible(true);        // TODO add your handling code here:
     private javax.swing.JMenu jMenu11;
     private javax.swing.JMenu jMenu12;
     private javax.swing.JMenu jMenu13;
+    private javax.swing.JMenu jMenu14;
+    private javax.swing.JMenu jMenu15;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;

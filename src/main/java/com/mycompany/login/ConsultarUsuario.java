@@ -86,9 +86,6 @@ public class ConsultarUsuario extends javax.swing.JFrame {
 this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMenu2MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
     private void llenarJTable() {
         DefaultTableModel t = new DefaultTableModel(new String[]{"Usuario","password","correo","nombre","apellido","rol"}, NewMain.usuarios.size());
         jTable1.setModel(t);
